@@ -5,10 +5,10 @@ console.log('Hii')
 // Data for quiz1
 let title1 = 'Harry Potter';
 let options1 = ['Sam Gooding','Stephen King','J.K. Rowling'];
-let correctAnswerIndex = 0;
+let correctAnswerIndex = 2;
 // Functions used for quiz1
-function isAnswerCorrect(correctAnswerIndex){
-    if(correctAnswerIndex === 2){
+function isAnswerCorrect(index){
+    if(index === correctAnswerIndex){
         console.log(`The answer is correct!!`)
         return true;
     }else{
@@ -17,7 +17,7 @@ function isAnswerCorrect(correctAnswerIndex){
     }
 }
 function getCorrectAnswer(){
-    return options[2];
+    return options[correctAnswerIndex];
 }
 
 
@@ -26,9 +26,10 @@ function getCorrectAnswer(){
 let quiz1 = {
     title1 : "Harry Potter",
     options1 : ['Sam Gooding','Stephen King','J.K. Rowling'],
+    correctAnswerIndex : 2,
 
-    isAnswerCorrect(correctAnswerIndex){
-        if(correctAnswerIndex === 2){
+    isAnswerCorrect(index){
+        if(index === quiz1.correctAnswerIndex){
             console.log(`The answer is correct!!`)
             return true;
         }else{
@@ -38,8 +39,8 @@ let quiz1 = {
     },
 
     getCorrectAnswer(){
-        return quiz1.options1[2];
-    },
+        return quiz1.options1[quiz1.correctAnswerIndex];
+    }
 };
 
 // III. Using a Function to automate the creation of the above object for multiple quiz
@@ -51,8 +52,8 @@ function createQuiz(title,options,correctAnswerIndex){
     quiz.options = options;
     quiz.correctAnswerIndex = correctAnswerIndex;
     
-    quiz.isAnswerCorrect = function(correctAnswerIndex){
-        if(correctAnswerIndex === 2){
+    quiz.isAnswerCorrect = function(index){
+        if(index === quiz.correctAnswerIndex){
             console.log(`The answer is correct!!`)
             return true;
         }else{
@@ -62,7 +63,7 @@ function createQuiz(title,options,correctAnswerIndex){
     },
 
     quiz.getCorrectAnswer = function(){
-        return quiz.options[2];
+        return quiz.options[quiz.correctAnswerIndex];
     }
 
     return quiz;
@@ -83,8 +84,8 @@ function createQuiz(title,options,correctAnswerIndex){
     quiz.options = options;
     quiz.correctAnswerIndex = correctAnswerIndex;
     
-    quiz.isAnswerCorrect = function(correctAnswerIndex){
-        if(correctAnswerIndex === 2){
+    quiz.isAnswerCorrect = function(index){
+        if(index === this.correctAnswerIndex){
             console.log(`The answer is correct!!`)
             return true;
         }else{
@@ -94,12 +95,12 @@ function createQuiz(title,options,correctAnswerIndex){
     },
 
     quiz.getCorrectAnswer = function(){
-        return this.options[2];
+        return this.options[this.correctAnswerIndex];
     }
 
     return quiz;
 }
 
-let quiz1 = createQuiz('Harry Potter',['Sam Gooding','Stephen King','J.K. Rowling'],1)
+// let quiz1 = createQuiz('Harry Potter',['Sam Gooding','Stephen King','J.K. Rowling'],1)
 let quiz2 = createQuiz('Harry Potter',['Sam Gooding','Stephen King','J.K. Rowling'],2)
 let quiz3 = createQuiz('Where is the capital of Jordan',['Kuwait City', 'Amaan', 'Tashkent', 'Nairobi'],1)

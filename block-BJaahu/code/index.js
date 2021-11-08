@@ -1,17 +1,18 @@
 console.log(`Hii`)
 
 // Prototypal pattern
+
 // let quizMethods = {
-//     isAnswerCorrect(index){
+//     isAnswerCorrect : function(index){
 //         return index === this.correctAnswerIndex;
 //     },
-//     getCorrectAnswer(){
+//     getCorrectAnswer : function(){
 //         return this.options[this.correctAnswerIndex];
 //     }
 // };
 
 // function createQuiz(title,options,correctAnswerIndex){
-//     let question = Object.create(quizMethods);
+//     let question = Object.create(quizMethods); // goes down the __proto__ chain and finds the methods
 //     question.title = title;
 //     question.options = options;
 //     question.correctAnswerIndex = correctAnswerIndex;
@@ -27,6 +28,7 @@ console.log(`Hii`)
 
 
 // Pseudoclassial Pattern
+
 // CreateQuiz.prototype = {
 //     isAnswerCorrect(index){
 //         return index === this.correctAnswerIndex;

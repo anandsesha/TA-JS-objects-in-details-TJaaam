@@ -4,7 +4,6 @@
 ```js
 class Square{
     constructor(side){
-        this.side = side;
         this.width = side;
         this.height = side;
     }
@@ -19,7 +18,6 @@ sample.side // 10
 ```js
 class Square{
     constructor(side){
-        this.side = side;
         this.width = side;
         this.height = side;
     }
@@ -34,7 +32,6 @@ let sample = new Square(10)
 ```js
 class Square{
     constructor(side){
-        this.side = side;
         this.width = side;
         this.height = side;
     }
@@ -42,7 +39,7 @@ class Square{
         return `The square is ${this.width} * ${this.height}`
     }
     calcArea(){
-        return this.side*this.side;
+        return this.width*this.height;
     }
 }
 let sample = new Square(10)
@@ -52,7 +49,6 @@ let sample = new Square(10)
 ```js
 class Square{
     constructor(side){
-        this.side = side;
         this.width = side;
         this.height = side;
     }
@@ -60,10 +56,10 @@ class Square{
         return `The square is ${this.width} * ${this.height}`
     }
     calcArea(){
-        return this.side*this.side;
+        return this.width*this.height;
     }
     get area(){
-        return this.side*this.side;
+        return this.width*this.height;
     }
 }
 let sample = new Square(10)
@@ -72,38 +68,38 @@ let sample = new Square(10)
 - Create a `area` setter method that will accept the area of the square. Based on the value of area it will set the value of `width` and `height`.
 ```js
 class Square{
+    constructor(side){
+        this.width = side;
+        this.height = side;
+    }
+    description(){
+        return `The square is ${this.width} * ${this.height}`
+    }
+    calcArea(){
+        return this.width*this.height;
+    }
+    get area(){
+        return this.width*this.height;
+    }
     set area(areaVal){
-        this.width = areaVal;
-        this.height = areaVal;
+        this.width = Math.sqrt(areaVal)
+        this.height = Math.sqrt(areaVal)
     }
 }
 let sample = new Square(10)
-// Test Case
-// sample.area = 10
-// Sample{
-//     "width": 10,
-//     "height": 10
-// }
 ```
 
 - Create a static method named `isEqual` which accepts two `square` object with `width` and `height` property. If the area of both square is same it will return `true` or `false`.
 
 ```js
 class Square{
-    // let square1 = {}
-    // let square2 = {}
-    constructor(width,height){
-        this.width = width;
-        this.height = height;
-        this.area = width*height;
+    constructor(side){
+        this.width = side;
+        this.height = side;
     }
     static isEqual(square1,square2){
-        if(this.area == this.area){
-            console.log(`Hiiii`)
-            return true;
-        }else{
-            return false;
-        }
+        return (square1.width*square1.height) == (square2.width*square2.height)
+        // i.e if Area of square1 == Area of square2, so return true.
     }
 }
 let sample = new Square(10,12)
@@ -113,30 +109,29 @@ let sample = new Square(10,12)
 
 ```js
 class Square{
-    // let square1 = {}
-    // let square2 = {}
-    constructor(width,height){
-        this.width = width;
-        this.height = height;
-        this.area = width*height;
+    constructor(side){
+        this.width = side;
+        this.height = side;
+        let noOfTimes = 0;
     }
-    static isEqual(square1,square2){
-        if(this.area == this.area){
-            console.log(`Hiiii`)
-            return true;
+    get area(){
+        this.noOfTimes++;
+        if(this.noOfTimes >= 4){
+            alert(`Upper limit reached for calling area property (made using getter method area)`)
         }else{
-            return false;
+            return this.width*this.height;
         }
     }
+    
 }
-let sample = new Square(10,12)
-let sample2 = new Square(13,15)
+let sample = new Square(200)
+let sample2 = new Square(100)
 ```
 <!-- Test Cases -->
-<!-- sample
-Square {width: 10, height: 12, area: 120}
-sample2
-Square {width: 13, height: 15, area: 195} -->
+<!-- sample.area
+40000
+sample2.area
+10000 -->
 
 - Check the `area` getter method on both square. Check the `area` property on one square more than 4 times.
 ```js
@@ -160,7 +155,30 @@ class Square{
 }
 ```
 - Check the `isEqual` method and pass the two instance you created above.
+```js
+class Square{
+    constructor(side){
+        this.width = side;
+        this.height = side;
+    }
+    get area(){
+        return this.width*this.height;        
+    }
+    static isEqual(square1,square2){
+        return square1.area === square2.area;
+    }
+}
+Square.isEqual(aOfSquare1,aOfSquare2)
+// Test cases
+// let sample3 = new Square(100)
 
+// undefined
+// let sample4 = new Square(100)
+
+// undefined
+// Square.isEqual(sample3,sample4)
+// true
+```
 ## User Class
 
 - Create a `User` class that accepts `firstName` and `lastName` property
@@ -240,8 +258,10 @@ class User{
         }
     }
     nameContains(str){
-        // this.name.includes(str) ? true : false;
-        console.log()
+        // return `${this.firstName} ${this.lastName}`.includes(str);
+        
+        // OR
+        
         if(this.firstName.includes(str) || this.lastName.includes(str)){
             return true;
         }else{
@@ -328,8 +348,14 @@ class User{
         return this.firstName+' '+this.lastName;
     }
     nameContains(str){
-        this.firstName.includes(str) || this.lastName.includes(str) ? true : false;     
+         return `${this.firstName} ${this.lastName}`.includes(str);
     }
 }
 let user1 = new User("Anand","Seshadri")
+
+// test case
+// user12.nameContains("Ana")
+// true
+// user12.nameContains("Anae")
+// false
 ```

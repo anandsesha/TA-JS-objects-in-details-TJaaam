@@ -17,7 +17,7 @@ let dogMethods = {
     bark: function(){
         alert(`I am ${this.name} and I can bark`)
     },
-    changeColor: function(newName){
+    changeName: function(newName){
         this.name = newName;
         return this.name;
     },
@@ -29,8 +29,8 @@ let dogMethods = {
         return `I am ${this.name} and I am of ${this.color}. I can also bark`
     }
 }
-
-Object.setPrototypeOf(animalMethods,dogMethods)
+// Linking dogs methods to animal methods
+Object.setPrototypeOf(dogMethods,animalMethods)
 
 let catMethods = {
     meow: function(){
@@ -49,7 +49,7 @@ let catMethods = {
     }
 }
 
-Object.setPrototypeOf(animalMethods,catMethods)
+Object.setPrototypeOf(catMethods,animalMethods)
 
 function createAnimal(location,noOfLegs){
     let animal = Object.create(animalMethods);
@@ -58,20 +58,26 @@ function createAnimal(location,noOfLegs){
     return animal;
 }
 
-function createDog(name,color){
-    let animal = Object.create(dogMethods);
+function createDog(location,noOfLegs,name,color){
+    // By this way the animal object is called and later we'll add dogs methods and dogs properties to it.
+    let animal = createAnimal(location,noOfLegs);
+    Object.setPrototypeOf(animal,dogMethods)
+    
     animal.name = name;
     animal.color = color;
     return animal;
 }
 
-function createCat(name,colorOfEyes){
-    let animal = Object.create(catMethods)
+function createCat(location,noOfLegs,name,colorOfEyes){
+    // By this way the animal object is called and later we'll add cat methods and cat properties to it.
+    let animal = createAnimal(location,noOfLegs)
+    Object.setPrototypeOf(animal,catMethods)
+
     animal.name = name;
     animal.colorOfEyes = colorOfEyes;
     return animal;
 }
 
 let animal1 = createAnimal("Mumbai",4)
-let dog1 = createDog("Snoey","white")
+let dog1 = createDog("Mumbai",4,"Snoey","white")
 let cat1 = createCat("whiskers","green")

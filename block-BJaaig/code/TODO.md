@@ -35,7 +35,8 @@ console.log(user2.sayHello()); // Hello Arya
 console.log(user.sayHello.call(user2)); // Hello Arya
 console.log(user.sayHello.call(user2, 'Hey')); // Hello Arya
 console.log(user.sayHello.apply(user2, ['Hey'])); // Hello Arya
-console.log(typeof user.sayHello.bind(user2)); // function. Bind returns a fn reference which is stored in a variable and that is called later.
+console.log(typeof user.sayHello.bind(user2)); // "function".
+// Bind returns a fn reference which is stored in a variable and that is called later.
 console.log(user.sayHello.bind(user2)()); // Hello Arya
 console.log(userSayHello()); // Hello undefined. because we have not binded
 console.log(typeof userSayHello.bind(user2)); // function

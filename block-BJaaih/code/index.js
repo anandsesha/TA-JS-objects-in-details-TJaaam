@@ -96,6 +96,12 @@ Array.prototype.shuffle = function(){
   return numbers;
 }
 
+// OR 
+
+Array.prototype.shuffle = function(){
+  return [...this].sort(() => Math.random() - 0.5)
+}
+
 // let numbers = [1,5,6,8,9]
 
 // Test to check the shuffle method (It will return different output every time you call)
@@ -122,6 +128,17 @@ Array.prototype.unique = function(){
   return final;
 }
 
+// OR
+
+Array.prototype.unique = function(){
+  return this.reduce((acc,cv) => {
+    if(!acc.includes(cv)){
+      acc.push(cv);
+    }
+    return acc;
+  },[])
+}
+
 // Test to check the shuffle method (It will return different output every time you call)
 let num = [1, 2, 3, 4, 2, 3, 6, 7, 7];
 let strings = 'helloworld'.split('');
@@ -135,15 +152,13 @@ array that will contain only element that is common in both the array.
 */
 
 // You code goes here
-Array.prototype.unique = function(){
-  let final = []
-  for(i=0; i<this.length; i++){
-    let elm = this[i]
-    if(!final.includes(elm)){
-      final.push(elm);
+Array.prototype.intersection = function(arr){
+  return this.reduce((acc,cv) => {
+    if(acc.includes(cv)){
+      acc.push(cv)
     }
-  }
-  return final;
+    return acc;
+  },[]).unique();
 }
 
 // Test to check the shuffle method (It will return different output every time you call)
@@ -157,10 +172,22 @@ chunk will be the remaining elements. `length` should default to 1.
 */
 
 // You code goes here
-Array.prototype.chunk = function(num){
+Array.prototype.chunk = function(size = 1){
+  let len = Math.floor(this.length / size);
   let final = []
-  
+
+  for(let i = 0; i < len; i++){
+    let smallArray = [...this].splice(0,size)
+    final.push(smallArray)    
+  }
+  return final;
 }
+
+// [1,2,3,4,5] , so we need [1,2], [3,4] and so on...
+// i.e length of arr / how much we want in each small array
+// 5 / 2
+// i.e array.length / size
+// splice is used bec we want to mutate the array
 
 // Test to check the shuffle method (It will return different output every time you call)
 console.log(num.chunk(2)); // [[1, 2], [3, 4], [2, 3], [6, 7], [7]]

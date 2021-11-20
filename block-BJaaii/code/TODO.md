@@ -10,7 +10,7 @@ Queue
 
 1. Create a class name `Stack` with the following data and methods. Also implement a `length` getter method.
 
-<!-- Stak is LIFO -->
+<!-- Stak is FILO -->
 Data:
 
 - `stack`
@@ -31,7 +31,7 @@ Getter
 
 ```js
 class Stack{
-    constructor(stack){
+    constructor(){
         this.stack = [];
     }
     push(val){
@@ -39,20 +39,25 @@ class Stack{
         return this.stack;
     }
     pop(){
-        return this.stack.pop()
+        this.stack.pop()
+        return this.stack;
     }
-    peek(optionalIndex = this.stack.length){
-        return optionalIndex !== null ? this.stack[optionalIndex] : this.stack[this.length]
+    peek(optionalIndex = this.stack.length - 1){
+        return this.stack[optionalIndex];
     }
     reverse(){
         this.stack = this.stack.reverse()
+        // OR this.stack.sort(() => -1)
         return this.stack;
     }
     isEmpty(){
-        return this.stack == null ? true : false;
+        return !(this.stack.length > 0);
     }
     displayStack(){
-        return this.stack.toString()
+        return this.stack.join(' ')
+    }
+    get length(){
+        return this.stack.length;
     }
 }
 
@@ -78,6 +83,11 @@ console.log(myStack.isEmpty()); // true
 
 2. Create a class name `Queue` with the following data and methods. Also implement a `length` getter method.
 
+<!--Queue is FIFO-->
+
+<!-- Adding data to queue is called Enqueue -->
+<!-- Removing data from queue is called Dequeue -->
+
 Data:
 
 - `queue`
@@ -93,6 +103,34 @@ Methods:
 Getter
 
 - `length`: returns the current length of the stack.
+
+```js
+class Queue{
+    constructor(){
+        this.queue = [];
+    }
+    enqueue(item){
+        return this.queue.push(item);
+    }
+    displayQueue(){
+        return this.queue.join(` `);
+    }
+    get length(){
+        return this.queue.length;
+    }
+    peek(optionalIndex = 0){
+        return this.queue[optionalIndex];
+    }
+    isEmpty(){
+        return !(this.queue.length > 0);
+    }
+
+    // Now we wont remove from last(bottom) but from the TOP
+    dequeue(){
+        return this.queue.splice(0,1)
+    }
+}
+```
 
 #### Test
 

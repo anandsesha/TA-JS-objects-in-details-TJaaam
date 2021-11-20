@@ -1,12 +1,12 @@
 console.log(`Hi`)
 
 class Book{
-    constructor(title,category,author,isRead = false,finishedDate){
+    constructor(title,category,author){
         this.title = title;
         this.category = category;
         this.authpr = author;
-        this.isRead = isRead;
-        this.finishedDate = finishedDate;
+        this.isRead = false;
+        this.finishedDate = null;
     }
     markBookAsRead(){
         this.isRead = true;
@@ -14,13 +14,11 @@ class Book{
     }
 }
 
-let book1 = new Book(["A","B","C"],0)
-
 
 class BookList{
-    constructor(allBooks = [],currentReadBookIndex){
-        this.allBooks = allBooks;
-        this.currentReadBookIndex = currentReadBookIndex;
+    constructor(){
+        this.allBooks = [];
+        this.currentReadBookIndex = 0;
     }
     add(listOfBooks = []){
         this.allBooks = this.allBooks.concat(listOfBooks);
@@ -39,7 +37,15 @@ class BookList{
     }
     changeCurrentBook(index){
         this.currentReadBookIndex = index;
+        return this.currentReadBookIndex;
     }
 }
 
 let booklist1 = new BookList(["A","B","C"],0)
+
+
+
+let book1 = new Book("The lord of the rings","Fiction","J.R.Bill")
+let book2 = new Book("To Kill a MockingJay","Non-Fiction","Random Guy")
+
+let booklist = new BookList([book1,book2]) 

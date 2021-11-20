@@ -10,6 +10,7 @@ Queue
 
 1. Create a class name `Stack` with the following data and methods. Also implement a `length` getter method.
 
+<!-- Stak is LIFO -->
 Data:
 
 - `stack`
@@ -27,6 +28,35 @@ Getter
 
 - `length`: returns the current length of the stack.
 
+
+```js
+class Stack{
+    constructor(stack){
+        this.stack = [];
+    }
+    push(val){
+        this.stack.push(val)
+        return this.stack;
+    }
+    pop(){
+        return this.stack.pop()
+    }
+    peek(optionalIndex = this.stack.length){
+        return optionalIndex !== null ? this.stack[optionalIndex] : this.stack[this.length]
+    }
+    reverse(){
+        this.stack = this.stack.reverse()
+        return this.stack;
+    }
+    isEmpty(){
+        return this.stack == null ? true : false;
+    }
+    displayStack(){
+        return this.stack.toString()
+    }
+}
+
+```
 #### Test
 
 ```js
@@ -38,7 +68,7 @@ console.log(myStack.peek()); // "Two"
 console.log(myStack.peek(0)); // "One"
 console.log(myStack.reverse()); // ['Two', 'One']
 console.log(myStack.displayStack()); // 'Two One'
-myStack.pop();
+myStack.pop(); // 'One'
 console.log(myStack.length); // 1
 console.log(myStack.peek()); // 'Two'
 console.log(myStack.isEmpty()); // false

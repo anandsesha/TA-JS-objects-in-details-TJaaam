@@ -1,0 +1,10 @@
+.show_result {
+    visibility: hidden;
+}
+.options{
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 5px;
+    flex-direction: column;
+    padding: 1rem 0;
+}
